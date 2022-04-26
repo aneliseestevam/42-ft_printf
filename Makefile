@@ -6,26 +6,26 @@
 #    By: aestevam <aestevam@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 10:12:34 by aestevam          #+#    #+#              #
-#    Updated: 2022/04/22 10:28:18 by aestevam         ###   ########.fr        #
+#    Updated: 2022/04/26 20:06:04 by aestevam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+NAME	= 	libftprintf.a
 
-LIBFT 	= ./libft/libft.a
+CC = 		gcc
 
-NAME	= libftprintf.a
+LIBFT 	= 	./libft/libft.a
 
-SRCS 	= ft_printf.c \
+SRCS 	= 	ft_printf.c
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	= 	${SRCS:.c=.o}
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= 	-Wall -Wextra -Werror -g
 
 .c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS} 
 			$(MAKE) -C ./libft
 			cp libft/libft.a $(NAME)
 			ar -rcs ${NAME} ${OBJS}
