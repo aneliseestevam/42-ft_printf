@@ -6,7 +6,7 @@
 /*   By: aestevam <aestevam@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 22:20:42 by aestevam          #+#    #+#             */
-/*   Updated: 2021/10/07 10:46:23 by aestevam         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:20:05 by aestevam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ size_t	ft_strlen(const char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }

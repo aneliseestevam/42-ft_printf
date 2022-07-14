@@ -6,46 +6,37 @@
 #    By: aestevam <aestevam@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 10:12:34 by aestevam          #+#    #+#              #
-#    Updated: 2022/04/26 20:06:04 by aestevam         ###   ########.fr        #
+#    Updated: 2022/07/14 13:06:04 by aestevam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 	libftprintf.a
+.PHONY:	clean fclean re all
 
-CC = 		gcc
+LIBFT	:= libft
+NAME	:= libftprintf.a
+CFLAGS	:= -Wall -Wextra -Werror -c
+CC	:= clang
+SRCS	:= ft_printf.c \
+		printf_utils.c \
 
-LIBFT 	= 	./libft/libft.a
+OBJ	:= $(SRCS:%.c=%.o)
 
-SRCS 	= 	ft_printf.c
+all	: $(NAME)
 
-OBJS	= 	${SRCS:.c=.o}
+$(NAME)	: $(OBJ)
+	make  -C $(LIBFT)
+	cp libft/libft.a $(NAME)
+	ar rc $(NAME) $(OBJ)
 
-CFLAGS	= 	-Wall -Wextra -Werror -g
+%.o	: %.c
+	$(CC) $(CFLAGS) $<
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+clean	:
+	rm -f $(OBJ)
+	make clean -C $(LIBFT)
 
-${NAME}:	${OBJS} 
-			$(MAKE) -C ./libft
-			cp libft/libft.a $(NAME)
-			ar -rcs ${NAME} ${OBJS}
+fclean	: clean
+	rm -f $(NAME)
+	make fclean -C $(LIBFT)
 
-all:		${NAME}
-
-clean:
-			$(MAKE) clean -C ./libft
-			rm -f ${OBJS}
-
-fclean: clean
-			$(MAKE) fclean -C ./libft
-			rm -f ${NAME}
-
-re: fclean all
-
-bonus: all
-
-test: all
-			${CC} main.c libftprintf.a libft/libft.a -o teste
-			./teste
-
-.PHONY: all, bonus, clean, fclean, re
+re	: fclean all
