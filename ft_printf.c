@@ -6,7 +6,7 @@
 /*   By: aestevam <aestevam@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 10:27:02 by aestevam          #+#    #+#             */
-/*   Updated: 2022/07/14 13:24:43 by aestevam         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:26:27 by aestevam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ static int	what_a_flag(va_list *argptr, char flag)
 		len = ft_putstr(va_arg(*argptr, char *)) + len;
 	if (flag == '%')
 		len = ft_putchar('%') + len;
+	if (flag == 'd' || flag == 'i')
+		len = ft_putnbr_base(va_arg(*argptr, int), "0123456789", flag) + len;
+	if (flag == 'u')
+		len = ft_putnbr_base(va_arg(*argptr, unsigned int), "0123456789", flag)
+			+ len;
+	if (flag == 'p')
+		len = ft_print_p (va_arg(*argptr, unsigned long long), 'a');
 	return (len);
 }
 
